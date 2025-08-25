@@ -23,7 +23,7 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
-          <li><a href="{{ route('contacto') }}">Contacto</a></li>
+          <li><a href="{{ route('contactos') }}">Contacto</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

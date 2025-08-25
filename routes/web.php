@@ -18,4 +18,4 @@ route::get('/servicios',[HomeController::class, 'servicios']) ->name('servicios'
 
 route::get('/portafolio',[HomeController::class, 'portafolio']) ->name('portafolio');
 
-route::get('/contacto',[HomeController::class, 'contacto']) ->name('contacto');
+route::get('/contactos',[HomeController::class, 'contactos']) ->name('contactos');

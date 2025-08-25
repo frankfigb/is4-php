@@ -31,8 +31,8 @@ class HomeController extends Controller
         return view('portafolio');
     }
 
-    public function contacto(){
-        return view('contacto');
+    public function contactos(){
+        return view('contactos');
     }
 
     /*muestra la vista y el formulario de creacion*/
