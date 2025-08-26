@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DatoPersonal;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,14 @@ class HomeController extends Controller
     }
 
     public function acerca(){
-        return view('acerca-de');
+        $fechaNacModel = DatoPersonal::first();
+        return view('acerca-de', [
+            'fecha_nacimiento' => $fechaNacModel->fecha_nacimiento,
+            'nombre' => $fechaNacModel->nombre,
+            'apellido' => $fechaNacModel->apellido,
+            'descripcion' => $fechaNacModel->descripcion,
+            'ciudad_domicilio' => $fechaNacModel->ciudad_domicilio,
+        ]);
     }
 
     public function resumen(){
@@ -31,8 +39,8 @@ class HomeController extends Controller
         return view('portafolio');
     }
 
-    public function contactos(){
-        return view('contactos');
+    public function contacto(){
+        return view('contacto');
     }
 
     /*muestra la vista y el formulario de creacion*/

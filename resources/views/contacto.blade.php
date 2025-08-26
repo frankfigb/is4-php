@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Contact - Kelly Bootstrap Template')
+@section('title', 'Contacto - Kelly Bootstrap Template')
 @section('body-class', 'contact-page')
 
 @section('content')
 
   <!-- Contact Section -->
-  <section id="contact" class="contact section">
+  <section id="contact" class="contacto section">
     <div class="container section-title" data-aos="fade-up">
       <h2>Contact</h2>
       <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit.</p>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="col-lg-6">
-          <form action="{{ route('contact.send') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+          <form action="{{ route('contacto') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
             @csrf
             <div class="row gy-4">
 
