@@ -12,9 +12,9 @@
     <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <h2>Kelly Adams</h2>
-          <p>I'm a professional illustrator from San Francisco</p>
-          <a href="{{ url('about') }}" class="btn-get-started">About Me</a>
+          <h2>Franco Figueredo</h2>
+          <p>Soy un estudiante de Guarambaré</p>
+          <a href="{{ url('acerca-de') }}" class="btn-get-started">Acerca de mí</a>
         </div>
       </div>
     </div>

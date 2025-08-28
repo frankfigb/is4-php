@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatoPersonal;
+use App\Models\Experiencia;
+use App\Models\TipoContacto;
+use App\Models\TIpoExperiencia;
+use App\Models\TipoHabilidad;
+use App\Models\TipoImagen;
 
 class HomeController extends Controller
 {
