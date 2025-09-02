@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipos_imagenes', function (Blueprint $table) {
+        Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+             $table->foreignId('cliente_id')->constrained('clientes');
+            $table->integer('estrellas');
+            $table->text('comentario'); 
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos_imagenes');
+        Schema::dropIfExists('comentarios');
     }
 };

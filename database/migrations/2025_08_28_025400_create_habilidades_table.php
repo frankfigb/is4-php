@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('habilidades', function (Blueprint $table) {
-            $table->foreignId('tipos_habilidades_id')->constrained()->onDelete('cascade');
-            $table->foreignId('experiencia_id')->constrained()->onDelete('cascade');
-            $table->integer('porcentaje');
             $table->id();
+            $table->foreignId('dato_personal_id')->constrained('datos_personales');
+            $table->foreignId('tipo_habilidad_id')->constrained('tipos_habilidades');
+            $table->integer('porcentaje');
             $table->timestamps();
         });
     }

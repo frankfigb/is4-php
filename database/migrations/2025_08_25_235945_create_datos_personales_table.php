@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-
             $table->string('descripcion');
             $table->date('fecha_nacimiento');
             $table->string('ciudad_domicilio');
-            
+            $table->string('sitio_web');
+            $table->string('correo');
+            $table->boolean('disponible');
+            $table->string('telefono');
+            $table->string('grado');
             $table->timestamps();
         });
     }

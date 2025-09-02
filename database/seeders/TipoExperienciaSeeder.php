@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\TipoExperiencia;
+use Illuminate\Support\Facades\DB;
 
 class TipoExperienciaSeeder extends Seeder
 {
@@ -13,20 +14,12 @@ class TipoExperienciaSeeder extends Seeder
      */
     public function run(): void
     {
-        $tipoExperiencia1 = TipoExperiencia::create([
-            'nombre' => 'Estudios Primarios'
-        ]);
+        DB::table('tipos_experiencias')->delete();
+        DB::statement("DELETE FROM sqlite_sequence WHERE name='tipos_experiencias'");
 
-        $tipoExperiencia2 = TipoExperiencia::create([
-            'nombre' => 'Estudios Universitarios'
-        ]);
-
-        $tipoExperiencia3 = TipoExperiencia::create([
-            'nombre' => 'Prácticas'
-        ]);
-
-        $tipoExperiencia4 = TipoExperiencia::create([
-            'nombre' => 'Trabajos'
-        ]);
+        TipoExperiencia::create(['nombre' => 'Laboral']);
+        TipoExperiencia::create(['nombre' => 'Profesional']);
+        TipoExperiencia::create(['nombre' => 'Educativo']);
+        TipoExperiencia::create(['nombre' => 'Cultural']);
     }
 }

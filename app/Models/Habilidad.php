@@ -3,18 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Habilidad extends Model
 {
-    protected $table = 'habilidades';
+    //
+    protected $table = "habilidades";
 
-    public function tiposHabilidades()
-    {
-        return $this->belongsTo(TiposHabilidades::class);
+    public function dato_personal(): BelongsTo{
+        return $this->belongsTo(DatoPersonal::class, 
+        'dato_personal_id', 
+        'id');
     }
 
-    public function experiencia()
-    {
-        return $this->belongsTo(Experiencia::class);
+    public function tipo_habilidad(): BelongsTo {
+        return $this->belongsTo(TipoHabilidad::class,
+        'tipo_habilidad_id', 
+        'id');
     }
 }
+

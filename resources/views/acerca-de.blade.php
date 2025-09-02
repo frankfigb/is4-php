@@ -18,7 +18,7 @@
 
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+            <img src="{{ $imagen_perfil_url }}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 content">
             <h2>UI/UX Designer &amp; Web Developer.</h2>
@@ -32,17 +32,16 @@
                   <li><i class="bi bi-chevron-right"></i> <strong>Name:</strong> <span>{{ $nombre }}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Surname:</strong> <span>{{ $apellido }}</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{ $ciudad_domicilio }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>{{ $sitio_web }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{ $telefono }}</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>email@example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ \Carbon\Carbon::parse($fecha_nacimiento)->age }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{ $grado }}</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ $correo }}</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>{{ $disponible }}</span></li>
                 </ul>
               </div>
             </div>
@@ -63,7 +62,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Skills</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem comsint consectetur velit</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

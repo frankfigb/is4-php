@@ -13,20 +13,9 @@ class TipoImagenSeeder extends Seeder
      */
     public function run(): void
     {
-         $tipoImagen1 = TipoImagen::create([
-            'nombre' => 'Imagen de Portafolio'
-        ]);
-
-         $tipoImagen2 = TipoImagen::create([
-            'nombre' => 'Imagen de Perfil'
-        ]);
-        
-        $tipoImagen3 = TipoImagen::create([
-            'nombre' => 'Imagen de Banner'
-        ]);
-
-        $tipoImagen4 = TipoImagen::create([
-            'nombre' => 'Imagen de Fondo'
-        ]);
+        TipoImagen::create(['nombre' => 'Perfil']);
+        TipoImagen::create(['nombre' => 'Portada']);
+        TipoImagen::create(['nombre' => 'Proyecto']);
+        TipoImagen::create(['nombre' => 'Certificado']);
     }
 }

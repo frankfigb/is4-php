@@ -4,89 +4,154 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatoPersonal;
+use App\Models\TipoExperiencia;
 use App\Models\Experiencia;
-use App\Models\TipoContacto;
-use App\Models\TIpoExperiencia;
-use App\Models\TipoHabilidad;
+use App\Models\Imagen;
 use App\Models\TipoImagen;
 
 class HomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * lista de recursos que tiene una vista asociada*/
+     * Página de inicio
+     */
+    public function inicio()
+    {
+        $imagenPortada = Imagen::whereHas('tipoImagen', function ($query) {
+            $query->where('nombre', 'portada');
+        })->first();
 
-    //metodo de la pagina raiz
-    public function inicio(){
-        return view('inicio');
-    }
+        $imagenUrl = $imagenPortada
+            ? asset('assets/img/' . $imagenPortada->url)
+            : asset('assets/img/default.jpg');
 
-    public function acerca(){
-        $fechaNacModel = DatoPersonal::first();
-        return view('acerca-de', [
-            'fecha_nacimiento' => $fechaNacModel->fecha_nacimiento,
-            'nombre' => $fechaNacModel->nombre,
-            'apellido' => $fechaNacModel->apellido,
-            'descripcion' => $fechaNacModel->descripcion,
-            'ciudad_domicilio' => $fechaNacModel->ciudad_domicilio,
+        return view('inicio', [
+            'imagen_portada_url' => $imagenUrl
         ]);
     }
 
-    public function resumen(){
-        return view('resumen');
+    /**
+     * Página "Acerca de"
+     */
+    public function acerca()
+    {
+        $fechaNacModel = DatoPersonal::first();
+
+        $imagenPerfil = Imagen::whereHas('tipoImagen', function ($query) {
+            $query->where('nombre', 'perfil');
+        })->first();
+
+        $imagenUrl = $imagenPerfil
+            ? asset('assets/img/' . $imagenPerfil->url)
+            : asset('assets/img/default.jpg');
+
+        return view('acerca-de', [
+            'fecha_nacimiento' => optional($fechaNacModel)->fecha_nacimiento,
+            'nombre' => optional($fechaNacModel)->nombre,
+            'apellido' => optional($fechaNacModel)->apellido,
+            'descripcion' => optional($fechaNacModel)->descripcion,
+            'ciudad_domicilio' => optional($fechaNacModel)->ciudad_domicilio,
+            'sitio_web' => optional($fechaNacModel)->sitio_web,
+            'correo' => optional($fechaNacModel)->correo,
+            'disponible' => optional($fechaNacModel)->disponible,
+            'telefono' => optional($fechaNacModel)->telefono,
+            'grado' => optional($fechaNacModel)->grado,
+            'imagen_perfil_url' => $imagenUrl
+        ]);
     }
 
-    public function servicios(){
+    /**
+     * Página de resumen de experiencias
+     */
+    public function resumen()
+    {
+        $laboral = TipoExperiencia::where('nombre', 'laboral')
+            ->with('experiencias')
+            ->get();
+
+        $profesional = TipoExperiencia::where('nombre', 'profesional')
+            ->with('experiencias')
+            ->get();
+
+        $educativo = TipoExperiencia::where('nombre', 'educativo')
+            ->with('experiencias')
+            ->get();
+
+        return view('resumen', [
+            'laboral' => $laboral,
+            'profesional' => $profesional,
+            'educativo' => $educativo
+        ]);
+    }
+
+    /**
+     * Página de servicios
+     */
+    public function servicios()
+    {
         return view('servicios');
     }
 
-    public function portafolio(){
+    /**
+     * Página de portafolio
+     */
+    public function portafolio()
+    {
         return view('portafolio');
     }
 
-    public function contacto(){
+    /**
+     * Página de contacto
+     */
+    public function contacto()
+    {
         return view('contacto');
     }
 
-    /*muestra la vista y el formulario de creacion*/
-    public function create(){
-        //
-    }
-
-    /** logica efectiva de creacion del registro*/
-    public function store(Request $request){
+    /**
+     * Mostrar formulario de creación
+     */
+    public function create()
+    {
         //
     }
 
     /**
-     * Display the specified resource.
-     * visualiza un registro de una vista asociada
+     * Guardar nuevo registro
      */
-    public function show(string $id){
+    public function store(Request $request)
+    {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * retorna un formulario de edicion a travez de una vista pero no procesa cuando el forulario se envia
+     * Mostrar un registro específico
      */
-    public function edit(string $id){
+    public function show(string $id)
+    {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     * es el que procesa el formulario de edicion 
+     * Mostrar formulario de edición
      */
-    public function update(Request $request, string $id){
+    public function edit(string $id)
+    {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
-     * logica de eliminado de un registro
+     * Procesar edición de un registro
      */
-    public function destroy(string $id){
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Eliminar un registro
+     */
+    public function destroy(string $id)
+    {
         //
     }
 }

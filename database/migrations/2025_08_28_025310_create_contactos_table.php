@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('tipos_contactos_id')->constrained()->onDelete('cascade');
-            $table->foreignId('datos_personales_id')->constrained()->onDelete('cascade');
-           
-            $table->string('datos', 255)->unique();
+            $table->foreignId('dato_personal_id')->constrained('datos_personales');
+            $table->foreignId('tipo_contacto_id')->constrained('tipos_contactos');
+            $table->string('contacto', 150); // varchar(150)
             $table->timestamps();
         });
     }

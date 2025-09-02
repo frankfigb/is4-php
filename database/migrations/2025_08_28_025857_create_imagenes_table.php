@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('tipos_imagenes_id')->constrained()->onDelete('cascade');
-            $table->foreignId('datos_personales_id')->constrained()->onDelete('cascade');
-            
-            $table->string('url', 255)->unique();
+            $table->foreignId('dato_personal_id')->constrained('datos_personales');
+            $table->foreignId('tipo_imagen_id')->constrained('tipos_imagenes');
+            $table->string('url', 250);
             $table->timestamps();
         });
     }

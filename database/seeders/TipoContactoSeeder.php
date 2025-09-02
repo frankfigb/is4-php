@@ -13,21 +13,10 @@ class TipoContactoSeeder extends Seeder
      */
     public function run(): void
     {
-    
-        $tipoContacto1 = new TipoContacto();
-        $tipoContacto1->nombre = 'Email';
-        $tipoContacto1->save();
-
-        $tipoContacto2 = TipoContacto::create([
-            'nombre' => 'Whatsapp'
-        ]);
-
-        $tipoContacto3 = TipoContacto::create([
-            'nombre' => 'Linkedin'
-        ]);
-
-        $tipoContacto4 = TipoContacto::create([
-            'nombre' => 'Instagram'
-        ]);
+        TipoContacto::create(['nombre' => 'Email']);
+        TipoContacto::create(['nombre' => 'Whatsapp']);
+        TipoContacto::create(['nombre' => 'Instagram']);
+        TipoContacto::create(['nombre' => 'X']);
+        TipoContacto::create(['nombre' => 'LinkedIn']);
     }
 }

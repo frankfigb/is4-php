@@ -13,20 +13,14 @@ return new class extends Migration
     {
         Schema::create('experiencias', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('datos_personales_id')->constrained()->onDelete('cascade');
-
-            $table->foreignId('tipos_experiencias_id')->constrained()->onDelete('cascade');
-
-            $table->string('nombre')->unique();
-            $table->text('descripcion')->nullable();
-            $table->string('ubicacion');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin')->nullable();
-
+            $table->foreignId('tipo_experiencia_id')->constrained('tipos_experiencias');
+            $table->foreignId('dato_personal_id')->constrained('datos_personales');
+            $table->string('desde', 50);
+            $table->string('hasta', 50);
+            $table->string('titulo', 50);
+            $table->string('descripcion', 250);
             $table->timestamps();
         });
-
     }
 
     /**

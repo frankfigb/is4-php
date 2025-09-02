@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Experiencia extends Model
 {
-    protected $table = 'experiencias';
+    //
+    protected $table = "experiencias";
 
-    public function tiposExperiencias(): BelongsTo
-    {
-        return $this->belongsTo(TiposExperiencias::class);
+    public function dato_personal(): BelongsTo {
+        return $this->belongsTo(DatoPersonal::class,
+        'dato_personal_id', 
+        'id');
     }
 
-    public function datosPersonales(): BelongsTo
-    {
-        return $this->belongsTo(DatosPersonales::class);
+    public function tipo_experiencia(): BelongsTo {
+        return $this->belongsTo(TipoExperiencia::class,
+        'tipo_experiencia_id', 
+        'id');
     }
 }

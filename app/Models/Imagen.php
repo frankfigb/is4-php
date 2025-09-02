@@ -8,13 +8,11 @@ class Imagen extends Model
 {
     protected $table = 'imagenes';
 
-    public function tiposImagenes()
-    {
-        return $this->belongsTo(TiposImagenes::class);
+    public function tipoImagen(){
+        return $this->belongsTo(TipoImagen::class, 'tipo_imagen_id');
     }
 
-    public function datosPersonales()
-    {
-        return $this->belongsTo(DatosPersonales::class);
+    public function datosPersonales(){
+        return $this->belongsTo(DatoPersonal::class);
     }
 }
