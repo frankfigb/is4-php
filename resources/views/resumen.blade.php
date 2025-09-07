@@ -11,7 +11,7 @@
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Resumen</h2>
-    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    <p>Explorá mi trayectoria laboral, educativa y profesional a lo largo del tiempo.</p>
   </div><!-- End Section Title -->
 
   <div class="container">
@@ -22,13 +22,13 @@
 
         {{-- Experiencia Laboral --}}
         @foreach($laboral as $tipo)
-          <h3 class="resume-title">{{ $tipo->nombre }}</h3>
+          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
           @foreach($tipo->experiencias as $exp)
             <div class="resume-item pb-0">
-              <h4>{{ $exp->titulo }}</h4>
-              <p><em>{{ $exp->descripcion }}</em></p>
+              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+              <p><em>{{ $exp->descripcion ?? 'Sin descripción disponible' }}</em></p>
               <ul>
-                <li>{{ $exp->desde }} - {{ $exp->hasta }}</li>
+                <li>{{ $exp->desde ?? 'Fecha inicio no disponible' }} - {{ $exp->hasta ?? 'Fecha fin no disponible' }}</li>
               </ul>
             </div>
           @endforeach
@@ -36,13 +36,13 @@
 
         {{-- Experiencia Educativa --}}
         @foreach($educativo as $tipo)
-          <h3 class="resume-title">{{ $tipo->nombre }}</h3>
+          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
           @foreach($tipo->experiencias as $exp)
             <div class="resume-item">
-              <h4>{{ $exp->titulo }}</h4>
-              <h5>{{ $exp->desde }} - {{ $exp->hasta }}</h5>
+              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+              <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
               <p><em>{{ $exp->institucion ?? 'Institución no especificada' }}</em></p>
-              <p>{{ $exp->descripcion }}</p>
+              <p>{{ $exp->descripcion ?? 'Sin descripción' }}</p>
             </div>
           @endforeach
         @endforeach
@@ -52,14 +52,14 @@
       {{-- Columna derecha: Profesional --}}
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
         @foreach($profesional as $tipo)
-          <h3 class="resume-title">{{ $tipo->nombre }}</h3>
+          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
           @foreach($tipo->experiencias as $exp)
             <div class="resume-item">
-              <h4>{{ $exp->titulo }}</h4>
-              <h5>{{ $exp->desde }} - {{ $exp->hasta }}</h5>
+              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+              <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
               <p><em>{{ $exp->empresa ?? 'Empresa no especificada' }}</em></p>
               <ul>
-                <li>{{ $exp->descripcion }}</li>
+                <li>{{ $exp->descripcion ?? 'Sin descripción' }}</li>
               </ul>
             </div>
           @endforeach

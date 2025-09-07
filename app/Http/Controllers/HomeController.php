@@ -14,35 +14,35 @@ class HomeController extends Controller
     /**
      * Página de inicio
      */
-    public function inicio()
-    {
-        $imagenPortada = Imagen::whereHas('tipoImagen', function ($query) {
-            $query->where('nombre', 'portada');
-        })->first();
+public function inicio()
+{
+    $imagenPortada = Imagen::whereHas('tipoImagen', function ($query) {
+        $query->where('nombre', 'Portada');
+    })->first();
 
-        $imagenUrl = $imagenPortada
-            ? asset('assets/img/' . $imagenPortada->url)
-            : asset('assets/img/default.jpg');
+    $imagenUrl = $imagenPortada
+        ? asset($imagenPortada->url)
+        : asset('storage/default.jpg');
 
-        return view('inicio', [
-            'imagen_portada_url' => $imagenUrl
-        ]);
-    }
+    return view('inicio', [
+        'imagen_portada_url' => $imagenUrl
+    ]);
+}
 
     /**
      * Página "Acerca de"
-     */
+     */ 
     public function acerca()
     {
         $fechaNacModel = DatoPersonal::first();
 
         $imagenPerfil = Imagen::whereHas('tipoImagen', function ($query) {
-            $query->where('nombre', 'perfil');
+            $query->where('nombre', 'Perfil');
         })->first();
 
         $imagenUrl = $imagenPerfil
-            ? asset('assets/img/' . $imagenPerfil->url)
-            : asset('assets/img/default.jpg');
+            ? asset($imagenPerfil->url)
+            : asset('storage/default.jpg');
 
         return view('acerca-de', [
             'fecha_nacimiento' => optional($fechaNacModel)->fecha_nacimiento,
@@ -64,15 +64,15 @@ class HomeController extends Controller
      */
     public function resumen()
     {
-        $laboral = TipoExperiencia::where('nombre', 'laboral')
+        $laboral = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['laboral'])
             ->with('experiencias')
             ->get();
 
-        $profesional = TipoExperiencia::where('nombre', 'profesional')
+        $profesional = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['profesional'])
             ->with('experiencias')
             ->get();
 
-        $educativo = TipoExperiencia::where('nombre', 'educativo')
+        $educativo = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['educativo'])
             ->with('experiencias')
             ->get();
 

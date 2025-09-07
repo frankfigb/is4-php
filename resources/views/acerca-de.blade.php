@@ -18,7 +18,7 @@
 
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
-            <img src="{{ $imagen_perfil_url }}" class="img-fluid" alt="">
+            <img src="{{$imagen_perfil_url}}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 content">
             <h2>UI/UX Designer &amp; Web Developer.</h2>

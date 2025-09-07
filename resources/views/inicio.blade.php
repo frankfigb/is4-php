@@ -7,7 +7,7 @@
 
 <!-- Hero Section -->
 <section id="hero" class="hero section">
-  <img src="{{$imagen_portada_url }}" alt="" data-aos="fade-in">
+  <img src="{{$imagen_portada_url}}" alt="" data-aos="fade-in">
 
   <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
     <div class="row justify-content-center">
