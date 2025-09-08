@@ -28,19 +28,19 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{ $fecha_nacimiento }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Name:</strong> <span>{{ $nombre }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Surname:</strong> <span>{{ $apellido }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{ $ciudad_domicilio }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>{{ $sitio_web }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{ $telefono }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Cumpleaños:</strong> <span>{{ $fecha_nacimiento }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Nombre:</strong> <span>{{ $nombre }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Apellido:</strong> <span>{{ $apellido }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Ciudad:</strong> <span>{{ $ciudad_domicilio }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Sitio Web:</strong> <span>{{ $sitio_web }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Teléfono:</strong> <span>{{ $telefono }}</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                   <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{ \Carbon\Carbon::parse($fecha_nacimiento)->age }}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{ $grado }}</span></li>
-                   <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ $correo }}</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Edad:</strong> <span>{{ \Carbon\Carbon::parse($fecha_nacimiento)->age }}</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Curso:</strong> <span>{{ $grado }}</span></li>
+                   <li><i class="bi bi-chevron-right"></i> <strong>Correo:</strong> <span>{{ $correo }}</span></li>
                    <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>{{ $disponible }}</span></li>
                 </ul>
               </div>

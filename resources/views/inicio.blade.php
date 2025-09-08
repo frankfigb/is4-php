@@ -14,7 +14,7 @@
       <div class="col-lg-8">
         <h2>Franco Figueredo</h2>
         <p>Soy Estudiante</p>
-        <a href="{{ url('about') }}" class="btn-get-started">About Me</a>
+        <a href="{{ route('acerca') }}" class="btn-get-started">About Me</a>
       </div>
     </div>
   </div>
