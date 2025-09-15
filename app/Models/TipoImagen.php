@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TipoImagen extends Model
 {
-    //
     protected $table = "tipos_imagenes";
 
+    protected $fillable = ['nombre'];
+
     public function imagenes(): HasMany {
-        return $this->hasMany(Imagen::class, 
-        'tipo_imagen_id', 
-        'id');
+        return $this->hasMany(Imagen::class, 'tipo_imagen_id', 'id');
     } 
 }

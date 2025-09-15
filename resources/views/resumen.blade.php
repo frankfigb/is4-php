@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.format')
 
-@section('title', 'Resume - Kelly Bootstrap Template')
-@section('body-class', 'resume-page')
+@section('app.name', 'Resumen - Kelly Bootstrap Template')
+@section('body_class', 'resume-page')
 
 @section('content')
 
@@ -21,49 +21,61 @@
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
         {{-- Experiencia Laboral --}}
-        @foreach($laboral as $tipo)
-          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
-          @foreach($tipo->experiencias as $exp)
-            <div class="resume-item pb-0">
-              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
-              <p><em>{{ $exp->descripcion ?? 'Sin descripción disponible' }}</em></p>
-              <ul>
-                <li>{{ $exp->desde ?? 'Fecha inicio no disponible' }} - {{ $exp->hasta ?? 'Fecha fin no disponible' }}</li>
-              </ul>
-            </div>
+        @if($laboral && $laboral instanceof \Illuminate\Support\Collection)
+          @foreach($laboral as $tipo)
+            @if(isset($tipo->nombre))
+              <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
+              @foreach($tipo->experiencias as $exp)
+                <div class="resume-item pb-0">
+                  <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+                  <p><em>{{ $exp->descripcion ?? 'Sin descripción disponible' }}</em></p>
+                  <ul>
+                    <li>{{ $exp->desde ?? 'Fecha inicio no disponible' }} - {{ $exp->hasta ?? 'Fecha fin no disponible' }}</li>
+                  </ul>
+                </div>
+              @endforeach
+            @endif
           @endforeach
-        @endforeach
+        @endif
 
         {{-- Experiencia Educativa --}}
-        @foreach($educativo as $tipo)
-          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
-          @foreach($tipo->experiencias as $exp)
-            <div class="resume-item">
-              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
-              <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
-              <p><em>{{ $exp->institucion ?? 'Institución no especificada' }}</em></p>
-              <p>{{ $exp->descripcion ?? 'Sin descripción' }}</p>
-            </div>
+        @if($educativo && $educativo instanceof \Illuminate\Support\Collection)
+          @foreach($educativo as $tipo)
+            @if(isset($tipo->nombre))
+              <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
+              @foreach($tipo->experiencias as $exp)
+                <div class="resume-item">
+                  <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+                  <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
+                  <p><em>{{ $exp->institucion ?? 'Institución no especificada' }}</em></p>
+                  <p>{{ $exp->descripcion ?? 'Sin descripción' }}</p>
+                </div>
+              @endforeach
+            @endif
           @endforeach
-        @endforeach
+        @endif
 
       </div>
 
       {{-- Columna derecha: Profesional --}}
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        @foreach($profesional as $tipo)
-          <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
-          @foreach($tipo->experiencias as $exp)
-            <div class="resume-item">
-              <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
-              <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
-              <p><em>{{ $exp->empresa ?? 'Empresa no especificada' }}</em></p>
-              <ul>
-                <li>{{ $exp->descripcion ?? 'Sin descripción' }}</li>
-              </ul>
-            </div>
+        @if($profesional && $profesional instanceof \Illuminate\Support\Collection)
+          @foreach($profesional as $tipo)
+            @if(isset($tipo->nombre))
+              <h3 class="resume-title">{{ ucfirst($tipo->nombre) }}</h3>
+              @foreach($tipo->experiencias as $exp)
+                <div class="resume-item">
+                  <h4>{{ $exp->titulo ?? 'Sin título' }}</h4>
+                  <h5>{{ $exp->desde ?? 'Inicio no disponible' }} - {{ $exp->hasta ?? 'Fin no disponible' }}</h5>
+                  <p><em>{{ $exp->empresa ?? 'Empresa no especificada' }}</em></p>
+                  <ul>
+                    <li>{{ $exp->descripcion ?? 'Sin descripción' }}</li>
+                  </ul>
+                </div>
+              @endforeach
+            @endif
           @endforeach
-        @endforeach
+        @endif
       </div>
 
     </div>
