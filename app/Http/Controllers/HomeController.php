@@ -62,26 +62,26 @@ public function inicio()
     /**
      * Página de resumen de experiencias
      */
-    public function resumen()
-    {
-        $laboral = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['laboral'])
-            ->with('experiencias')
-            ->get();
+public function resumen()
+{
+    $laboral = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['laboral'])
+        ->with('experiencias')
+        ->get();
 
-        $profesional = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['profesional'])
-            ->with('experiencias')
-            ->get();
+    $profesional = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['profesional'])
+        ->with('experiencias')
+        ->get();
 
-        $educativo = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['educativo'])
-            ->with('experiencias')
-            ->get();
+    $educativo = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['educativo'])
+        ->with('experiencias')
+        ->get();
 
-        return view('resumen', [
-            'laboral' => $laboral,
-            'profesional' => $profesional,
-            'educativo' => $educativo
-        ]);
-    }
+    return view('resumen', [
+        'laboral' => $laboral,
+        'profesional' => $profesional,
+        'educativo' => $educativo
+    ]);
+}
 
     /**
      * Página de servicios
