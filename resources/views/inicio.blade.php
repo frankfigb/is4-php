@@ -1,23 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.format')
 
-@section('title', config('app.name'))
-@section('body-class', 'index-page')
+@section('app.name')
+
+@section('body_class', 'index-page')
 
 @section('content')
 
-<!-- Hero Section -->
-<section id="hero" class="hero section">
-  <img src="{{$imagen_portada_url}}" alt="" data-aos="fade-in">
+    <section id="hero" class="hero section">
+    <img src="{{$imagen_portada_url}}" alt="" data-aos="fade-in">
 
-  <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
+    <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
+        <div class="col-lg-8">
         <h2>Franco Figueredo</h2>
         <p>Soy Estudiante</p>
-        <a href="{{ route('acerca') }}" class="btn-get-started">About Me</a>
-      </div>
+        <a href="{{ url('acerca-de') }}" class="btn-get-started">Conocer mas</a>
+        </div>
     </div>
-  </div>
+    </div>
 </section><!-- /Hero Section -->
-
 @endsection
