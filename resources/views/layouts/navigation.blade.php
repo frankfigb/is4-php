@@ -75,6 +75,9 @@
                                 <x-dropdown-link :href="route('admin.contacto.index')">
                                     {{ __('Contacto') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('admin.servicio.index')">
+                                    {{ __('Servicios') }}
+                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>

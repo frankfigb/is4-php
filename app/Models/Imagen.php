@@ -8,11 +8,19 @@ class Imagen extends Model
 {
     protected $table = 'imagenes';
 
-    public function tipoImagen(){
+    protected $fillable = [
+        'tipo_imagen_id',
+        'dato_personal_id',
+        'url'
+    ];
+
+    public function tipoImagen()
+    {
         return $this->belongsTo(TipoImagen::class, 'tipo_imagen_id');
     }
 
-    public function datosPersonales(){
-        return $this->belongsTo(DatoPersonal::class);
+    public function datosPersonales()
+    {
+        return $this->belongsTo(DatoPersonal::class, 'dato_personal_id');
     }
 }

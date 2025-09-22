@@ -7,7 +7,12 @@
 @section('content')
 
     <section id="hero" class="hero section">
-    <img src="{{$imagen_portada_url}}" alt="" data-aos="fade-in">
+    @if ($imagen_portada_url && file_exists(public_path('storage/' . $imagen_portada_url)))
+    <img src="{{ asset('storage/' . $imagen_portada_url) }}" alt="Portada" data-aos="fade-in">
+@else
+    <div class="w-full h-96 bg-white"></div> {{-- Fondo blanco si no hay imagen --}}
+@endif
+
 
     <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
     <div class="row justify-content-center">

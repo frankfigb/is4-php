@@ -5,16 +5,17 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6">
                     <div class="container mx-auto p-4">
 
-                        {{-- Botón para añadir arriba de la tabla (a la izquierda) --}}
+                        {{-- Botón para añadir arriba de la tabla --}}
                         <div class="flex justify-start mb-4">
-                            <a href="{{ route('admin.tipo-contacto.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
-                                Añadir Nuevo Tipo
+                            <a href="{{ route('admin.tipo-contacto.create') }}"
+                               class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                ➕ Añadir Nuevo Tipo
                             </a>
                         </div>
 
@@ -36,44 +37,52 @@
                             </div>
                         @endif
 
-                        <div class="bg-gray-800 rounded-lg shadow-xl p-6">
+                        <div class="bg-gray-700 rounded-lg shadow-xl p-6">
                             <h1 class="text-3xl font-bold mb-6 text-center text-blue-400">Listado de Tipos de Contactos</h1>
 
                             <div class="overflow-x-auto">
-                                <table class="min-w-full leading-normal">
+                                <table class="min-w-full leading-normal text-white">
                                     <thead>
-                                    <tr class="bg-gray-700 text-gray-300">
-                                        <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-xs font-semibold uppercase tracking-wider">ID</th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-xs font-semibold uppercase tracking-wider">Nombre</th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-xs font-semibold uppercase tracking-wider">Creado</th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-xs font-semibold uppercase tracking-wider">Actualizado</th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-xs font-semibold uppercase tracking-wider">Acciones</th>
+                                    <tr class="bg-gray-600 text-white">
+                                        <th class="px-5 py-3 border-b-2 border-gray-500 text-left text-xs font-semibold uppercase tracking-wider">ID</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-500 text-left text-xs font-semibold uppercase tracking-wider">Nombre</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-500 text-left text-xs font-semibold uppercase tracking-wider">Creado</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-500 text-left text-xs font-semibold uppercase tracking-wider">Actualizado</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-500 text-left text-xs font-semibold uppercase tracking-wider">Acciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($records as $tipo)
-                                        <tr class="hover:bg-gray-700 transition duration-300 ease-in-out">
-                                            <td class="px-5 py-5 border-b border-gray-700 text-sm">
-                                                <p class="text-gray-200 whitespace-no-wrap">{{ $tipo->id }}</p>
+                                        <tr class="hover:bg-gray-600 transition duration-300 ease-in-out">
+                                            <td class="px-5 py-5 border-b border-gray-500 text-sm">
+                                                {{ $tipo->id }}
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-700 text-sm">
-                                                <p class="text-gray-200 whitespace-no-wrap">{{ $tipo->nombre }}</p>
+                                            <td class="px-5 py-5 border-b border-gray-500 text-sm">
+                                                {{ $tipo->nombre }}
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-700 text-sm">
-                                                <p class="text-gray-200 whitespace-no-wrap">{{ $tipo->created_at->format('d/m/Y H:i') }}</p>
+                                            <td class="px-5 py-5 border-b border-gray-500 text-sm">
+                                                {{ $tipo->created_at->format('d/m/Y H:i') }}
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-700 text-sm">
-                                                <p class="text-gray-200 whitespace-no-wrap">{{ $tipo->updated_at->format('d/m/Y H:i') }}</p>
+                                            <td class="px-5 py-5 border-b border-gray-500 text-sm">
+                                                {{ $tipo->updated_at->format('d/m/Y H:i') }}
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-700 text-sm">
-                                                <div class="flex space-x-2">
-                                                    {{-- Botones --}}
-                                                    <a href="{{ route('admin.tipo-contacto.show', [$tipo->id]) }}" class="inline-block w-20 text-center border border-green-400 text-green-400 hover:bg-green-400 hover:text-white px-2 py-1 rounded-md transition duration-300 ease-in-out">Ver</a>
-                                                    <a href="{{ route('admin.tipo-contacto.edit', [$tipo->id]) }}" class="inline-block w-20 text-center border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-white px-2 py-1 rounded-md transition duration-300 ease-in-out">Editar</a>
-                                                    <form action="{{ route('admin.tipo-contacto.destroy', [$tipo->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?');">
+                                            <td class="px-5 py-5 border-b border-gray-500 text-sm">
+                                                <div class="flex flex-wrap gap-2">
+                                                    <a href="{{ route('admin.tipo-contacto.show', $tipo->id) }}"
+                                                       class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-md shadow-sm transition duration-200">
+                                                        👁 Ver
+                                                    </a>
+                                                    <a href="{{ route('admin.tipo-contacto.edit', $tipo->id) }}"
+                                                       class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-md shadow-sm transition duration-200">
+                                                        ✏️ Editar
+                                                    </a>
+                                                    <form action="{{ route('admin.tipo-contacto.destroy', $tipo->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este registro?');">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="inline-block w-20 text-center border border-red-400 text-red-400 hover:bg-red-400 hover:text-white px-2 py-1 rounded-md transition duration-300 ease-in-out">Eliminar</button>
+                                                        <button type="submit"
+                                                                class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-md shadow-sm transition duration-200">
+                                                            🗑 Eliminar
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -86,8 +95,9 @@
 
                         {{-- Botón para añadir debajo de la tabla --}}
                         <div class="flex justify-start mt-4">
-                            <a href="{{ route('admin.tipo-contacto.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
-                                Añadir Nuevo Tipo
+                            <a href="{{ route('admin.tipo-contacto.create') }}"
+                               class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200">
+                                ➕ Añadir Nuevo Tipo
                             </a>
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,40 +7,41 @@ use App\Models\TipoExperiencia;
 use App\Models\Experiencia;
 use App\Models\Imagen;
 use App\Models\TipoImagen;
+use App\Models\Servicio;
 
 class HomeController extends Controller
 {
     /**
      * Página de inicio
      */
-public function inicio()
-{
-    $imagenPortada = Imagen::whereHas('tipoImagen', function ($query) {
-        $query->where('nombre', 'Portada');
-    })->first();
+    public function inicio()
+    {
+        $imagenPortada = Imagen::whereHas('tipoImagen', function ($query) {
+            $query->where('nombre', 'Portada');
+        })->first();
 
-    $imagenUrl = $imagenPortada
-        ? asset($imagenPortada->url)
-        : asset('storage/default.jpg');
+        $imagenUrl = ($imagenPortada && $imagenPortada->url && file_exists(public_path('storage/' . $imagenPortada->url)))
+            ? asset('storage/' . $imagenPortada->url)
+            : asset('storage/default.jpg');
 
-    return view('inicio', [
-        'imagen_portada_url' => $imagenUrl
-    ]);
-}
+        return view('inicio', [
+            'imagen_portada_url' => $imagenUrl
+        ]);
+    }
 
     /**
      * Página "Acerca de"
-     */ 
+     */
     public function acerca()
     {
         $fechaNacModel = DatoPersonal::first();
 
         $imagenPerfil = Imagen::whereHas('tipoImagen', function ($query) {
-            $query->where('nombre', 'Perfil');
+            $query->whereRaw('LOWER(nombre) LIKE ?', ['%perfiles%']);
         })->first();
 
-        $imagenUrl = $imagenPerfil
-            ? asset($imagenPerfil->url)
+        $imagenUrl = ($imagenPerfil && $imagenPerfil->url)
+            ? asset('storage/' . $imagenPerfil->url)
             : asset('storage/default.jpg');
 
         return view('acerca-de', [
@@ -62,33 +62,37 @@ public function inicio()
     /**
      * Página de resumen de experiencias
      */
-public function resumen()
-{
-    $laboral = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['laboral'])
-        ->with('experiencias')
-        ->get();
+    public function resumen()
+    {
+        $laboral = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['laboral'])
+            ->with('experiencias')
+            ->get();
 
-    $profesional = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['profesional'])
-        ->with('experiencias')
-        ->get();
+        $profesional = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['profesional'])
+            ->with('experiencias')
+            ->get();
 
-    $educativo = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['educativo'])
-        ->with('experiencias')
-        ->get();
+        $educativo = TipoExperiencia::whereRaw('LOWER(nombre) = ?', ['educativo'])
+            ->with('experiencias')
+            ->get();
 
-    return view('resumen', [
-        'laboral' => $laboral,
-        'profesional' => $profesional,
-        'educativo' => $educativo
-    ]);
-}
+        return view('resumen', [
+            'laboral' => $laboral,
+            'profesional' => $profesional,
+            'educativo' => $educativo
+        ]);
+    }
 
     /**
      * Página de servicios
      */
     public function servicios()
     {
-        return view('servicios');
+        $servicios = Servicio::with('datoPersonal')->orderByDesc('created_at')->get();
+
+        return view('servicios', [
+            'servicios' => $servicios
+        ]);
     }
 
     /**
@@ -108,50 +112,26 @@ public function resumen()
     }
 
     /**
-     * Mostrar formulario de creación
+     * Vista de prueba
      */
-    public function create()
+    public function test()
     {
-        //
+        $imagenPerfil = Imagen::whereHas('tipoImagen', function ($query) {
+            $query->where('nombre', 'Perfil');
+        })->first();
+
+        $imagenUrl = ($imagenPerfil && $imagenPerfil->url)
+            ? asset('storage/' . $imagenPerfil->url)
+            : asset('storage/default.jpg');
+
+        return view('test', ['imagen_perfil_url' => $imagenUrl]);
     }
 
-    /**
-     * Guardar nuevo registro
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Mostrar un registro específico
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Mostrar formulario de edición
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Procesar edición de un registro
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Eliminar un registro
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // Métodos vacíos para compatibilidad futura
+    public function create() {}
+    public function store(Request $request) {}
+    public function show(string $id) {}
+    public function edit(string $id) {}
+    public function update(Request $request, string $id) {}
+    public function destroy(string $id) {}
 }
